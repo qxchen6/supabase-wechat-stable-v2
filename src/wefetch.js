@@ -1,6 +1,10 @@
-function myfetch(url, options) {
+function myfetch(url, options, appRequestScope='wx') {
   return new Promise((resolve, reject) => {
-    wx.request({
+    let requester = wx.request
+    if(appRequestScope === 'xhs'){
+      requester = xhs.request
+    }
+    requester({
       url: url,
       data: options.body,
       method: options.method,

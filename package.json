@@ -1,7 +1,7 @@
 {
-  "name": "supabase-wechat-stable-v2",
+  "name": "supabase-wechat-xhs",
   "version": "2.1.4",
-  "description": "wechat Javascript client for Supabase",
+  "description": "wechat/xhs Javascript client for Supabase",
   "keywords": [
     "javascript",
     "typescript",

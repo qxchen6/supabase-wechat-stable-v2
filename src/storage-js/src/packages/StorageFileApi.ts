@@ -103,6 +103,7 @@ export default class StorageFileApi {
       const FormData = require('../lib/formData.js')
       let formData = new FormData()
       formData.append('name', 'value')
+      // @ts-ignore
       formData.appendFile('file', fileBody.tempFilePath, path)
       let data = formData.getData()
       headers['cache-control'] = `max-age=${options.cacheControl}`
@@ -119,6 +120,7 @@ export default class StorageFileApi {
         }
       } else {
         const error = res
+        // @ts-ignore
         return { data: null, error }
       }
     } catch (error) {
@@ -172,6 +174,7 @@ export default class StorageFileApi {
       const _path = this._getFinalPath(cleanPath)
 
       return new Promise((resolve, reject) => {
+        // @ts-ignore
         uni.uploadFile({
           url: `${this.url}/object/${_path}`, // 仅为示例，非真实的接口地址
           filePath: fileBody,

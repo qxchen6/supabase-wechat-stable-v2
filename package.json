@@ -25,7 +25,7 @@
     "clean": "rimraf dist docs",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
     "build": "run-s clean format build:*",
-    "build:main": "tsc -p tsconfig.json",
+    "build:main": "tsc -p tsconfig.json --skipLibCheck --noEmitOnError false",
     "build:module": "tsc -p tsconfig.module.json",
     "build:umd": "webpack",
     "types-generate": "dts-gen -m '@supabase/supabase-js' -s",

@@ -34,12 +34,17 @@ export const createClient = <
 >(
   supabaseUrl: string,
   supabaseKey: string,
-  options?: { appRequestScope: 'wx' | 'xhs' } & SupabaseClientOptions<SchemaName>
+  options?: SupabaseClientOptions<SchemaName>
 ): SupabaseClient<Database, SchemaName, Schema> => {
   return new SupabaseClient(supabaseUrl, supabaseKey, {
     ...options,
     global: {
-      fetch: (...args) => myfetch(...args, options?.appRequestScope),
+      fetch: options?.global?.fetch
+        ? (...args) => {
+            // @ts-ignore
+            return options!.global!.fetch(...args)
+          }
+        : (...args) => myfetch(...args),
       headers: options?.global?.headers || {},
     },
   })

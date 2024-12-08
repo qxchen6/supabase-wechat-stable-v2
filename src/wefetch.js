@@ -1,8 +1,9 @@
-function myfetch(url, options, appRequestScope='wx') {
+function myfetch(url, options) {
   return new Promise((resolve, reject) => {
     let requester = wx.request
-    if(appRequestScope === 'xhs'){
-      requester = xhs.request
+    if (appRequestScope === 'xhs') {
+      console.log('xhsxhsxhs')
+      requester = Taro.request
     }
     requester({
       url: url,
@@ -13,7 +14,6 @@ function myfetch(url, options, appRequestScope='wx') {
         Object.prototype.toString.call(options.headers) == '[object Map]'
           ? Object.fromEntries(options.headers.entries())
           : options.headers,
-      success: resolve,
       success(res) {
         if (res.statusCode >= 200 && res.statusCode <= 299) {
           res.ok = true
